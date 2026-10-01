@@ -1,0 +1,5 @@
+Alembic migration environment for ShadiPay.
+
+Create future migrations with:
+
+    alembic revision --autogenerate -m "description"
