@@ -1,18 +1,28 @@
+# Virtual Environment
 venv/
+
+# Python Cache
 __pycache__/
 *.pyc
-.env
-.pytest_cache/
-.vscode/
-firebase/service-account.json
+*.py[cod]
 
-node_modules/
-uploads/
-
+# Environment Variables
 .env
 .env.*
 !.env.example
 
-venv/
-__pycache__/
-*.py[cod]
+# Firebase Credentials
+firebase/service-account.json
+app/core/service-account.json
+
+# Pytest
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# Node
+node_modules/
+
+# Uploads
+uploads/
