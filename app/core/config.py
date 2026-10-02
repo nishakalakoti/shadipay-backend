@@ -1,4 +1,5 @@
 import os
+from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
 from pydantic import BaseModel
@@ -12,7 +13,6 @@ class Settings(BaseModel):
     # DATABASE
     # =====================================================
 
-    DATABASE_URL: str
     DB_HOST: str
     DB_PORT: int
     DB_NAME: str
@@ -26,16 +26,25 @@ class Settings(BaseModel):
     FRONTEND_URL: str
     ALLOWED_ORIGINS: str
 
+    # =====================================================
+    # DATABASE URL
+    # =====================================================
+
+    @property
+    def DATABASE_URL(self) -> str:
+        user = quote_plus(self.DB_USER)
+        password = quote_plus(self.DB_PASSWORD)
+
+        return (
+            f"postgresql://{user}:{password}"
+            f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        )
+
 
 settings = Settings(
     # =====================================================
     # DATABASE
     # =====================================================
-
-    DATABASE_URL=os.getenv(
-        "DATABASE_URL",
-        "",
-    ),
 
     DB_HOST=os.getenv(
         "DB_HOST",
